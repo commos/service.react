@@ -20,14 +20,36 @@
   (apply js/React.createElement "button" #js{:onClick on-click}
          title))
 
-(defreact app [{:keys [store]}]
+(defreact unmounting [child]
+  :state mounted?
+  (fn getInitialState []
+    {:mounted? true})
   (fn render []
-    (with-requests {counter [store :count {:xf delta/sums}]}
-      (div (pr-str counter)
-        "    "
-        (button "go"
-          (fn [_]
-            (service/request store [:op :add 10] (chan))))))))
+    (div
+      (if mounted?
+        child)
+      (button (if mounted? "Unmount" "Mount")
+        (fn [_]
+          (m/state! this not))))))
+
+(defreact app [{:keys [store store2]}]
+  :state show-store-2?
+  (fn render []
+    (let [current-store (if show-store-2? store2 store)]
+      (unmounting
+       (with-requests {counter [current-store :count {:xf delta/sums}]}
+         (div
+           (pr-str "store: " (if (= current-store store2)
+                               "store2"
+                               "store"))
+           (pr-str counter)
+           "    "
+           (button "go"
+             (fn [_]
+               (service/request current-store [:op :add 10] (chan))))
+           (button "show store 2"
+             (fn [_]
+               (m/state! this not)))))))))
 
 (enable-console-print!)
 
@@ -49,11 +71,17 @@
                 (ls/local-store :k->op {:add adder}
                                 :alias->spec {:count [:read [:counter]]})))
 
+(defonce store2 (dbg-service
+                 (ls/local-store :k->op {:add adder}
+                                 :alias->spec {:count [:read [:counter]]})))
+
 (comment
   (service/request store [:op :add 200] (chan)))
 
 (defn main []
-  (js/React.render (app {:store store})
+  (js/React.render (app {:store store
+                         :store2 store2})
                    (js/document.getElementById "app")))
 
 (main)
+
