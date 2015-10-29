@@ -7,13 +7,13 @@
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  
                  [org.commos/service "0.2.0"]
-                 [minreact "0.1.0"]]
+                 [minreact "0.1.2"]]
   :source-paths ["src/cljs"]
   :profiles {:dev {:dependencies [[org.clojure/clojurescript "1.7.48"]
                                   [org.commos/delta.local-store
                                    "0.1.0-SNAPSHOT"]]
                    :plugins [[lein-cljsbuild "1.0.6"]
-                             [lein-figwheel "0.3.5"]]
+                             [lein-figwheel "0.3.9"]]
                    
                    :figwheel {:nrepl-port 7888}
                    
