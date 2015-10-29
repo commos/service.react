@@ -24,12 +24,12 @@
 
 (defn- calc-subs
   [old new]
-  [(keys (remove (fn [[k v]]
-                   (= (get new k) v))
-                 old))
-   (keys (remove (fn [[k v]]
-                   (= (get old k) v))
-                 new))])
+  [(remove (fn [[k v]]
+             (= (get new k) v))
+           old)
+   (remove (fn [[k v]]
+             (= (get old k) v))
+           new)])
 
 (defn- dispatch-loop
   [ch component k]
