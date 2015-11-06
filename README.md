@@ -1,6 +1,6 @@
 # commos.service.react
 
-`[org.commos/service.react "0.1.0"]` provides a react component and wrapper macro to easily integrate use of commos services in user interfaces built with React.
+`[org.commos/service.react "0.1.2"]` provides a react component and wrapper macro to easily integrate use of commos services in user interfaces built with React.
 
 ## Usage
 

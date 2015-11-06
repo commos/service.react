@@ -78,5 +78,5 @@
       (start-dispatch! c add-spec)))
   (fn componentWillUnmount []
     (stop-dispatch! c spec))
-  (fn render []
+  (fn wrapping render []
     (render-ext values)))
