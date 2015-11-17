@@ -1,4 +1,4 @@
-(defproject org.commos/service.react "0.1.2"
+(defproject org.commos/service.react "0.1.0-SNAPSHOT"
   :description "Use commos services in React components"
   :url "http://github.com/commos/service.react"
   :license {:name "Eclipse Public License"
