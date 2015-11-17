@@ -4,7 +4,7 @@
 
 ## Usage
 
-At the time please refer to the docstring of the commos.delta.compscribe/compscribe function.
+TODO
 
 ## License
 
